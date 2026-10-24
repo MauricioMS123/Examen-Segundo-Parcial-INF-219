@@ -30,16 +30,16 @@ III	CU16 Generar reportes administrativos (REP01–REP07)	Administrador
 Fragmentos de código
 
 Control de acceso por rol (RN12). Cada rol tiene su lista de vistas autorizadas; el menú lateral la usa para bloquear el resto.
-
+```js
 const ACC = {
   Administrador: ['CU01','CU02','CU03','CU04','CU05','CU07','CU15','CU16'],
   Recepcionista: ['CU01','CU02','CU06','CU08','CU09','CU10','CU11','CU12','CU13','CU15','CU17'],
   'Médico':      ['CU01','CU02','CU12','CU14']
 };
-
+```
 Bloques horarios y disponibilidad. Los bloques se generan a partir del horario del médico. Cada uno se clasifica como Disponible, Ocupado por una cita o Bloqueado por indisponibilidad (CU08 y CU09).
 
-js
+```js
 const slots = (m, f) =>
   H.filter(h => h.m == m && h.d == DIAS[new Date(f + 'T12:00').getDay()])
    .flatMap(h => {
@@ -47,21 +47,22 @@ const slots = (m, f) =>
      while (add(t, h.dur) <= h.f) { r.push(t); t = add(t, h.dur); }
      return r;
    });
-
+```
+```js
 const sl = (m, f, t, ex) => {
   let x = X.find(x => x.m == m && f + ' ' + t >= x.i && f + ' ' + t < x.f);
   if (x) return ['Bloqueado', x.mot];
   let c = C.find(c => c.m == m && c.f == f && c.i == t && vg(c) && c.c != ex);
   return c ? ['Ocupado', c.c] : ['Disponible', ''];
 };
-
+```
 Citas afectadas por indisponibilidad (CU07 y CU17). Una cita vigente queda afectada si se superpone con una ausencia, permiso o vacación del médico.
 
-js
+```js
 const ov = (c, x) =>
   c.m == x.m && c.f + ' ' + c.i < x.f && c.f + ' ' + add(c.i, 30) > x.i;
 Capturas de pantalla
-
+```
 md
 ### Ciclo I
 ![CU01 Iniciar sesión](Inicio_sesion.png)
