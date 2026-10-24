@@ -73,7 +73,7 @@ md
 ![CU10 Reprogramar cita médica](Reprogramar.png)
 
 ### Ciclo III
-![CU16 Generar reportes administrativos](capturas/cu16.png)
+![CU16 Generar reportes administrativos](Reportes.png)
 
 Cómo ejecutarlo
 Descarga o clona el repositorio.
