@@ -63,8 +63,6 @@ const ov = (c, x) =>
   c.m == x.m && c.f + ' ' + c.i < x.f && c.f + ' ' + add(c.i, 30) > x.i;
 Capturas de pantalla
 
-Agrega aquí tus capturas, una por caso de uso, en la carpeta capturas/.
-
 md
 ### Ciclo I
 ![CU01 Iniciar sesión](Inicio_sesion.png)
