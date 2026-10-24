@@ -70,7 +70,7 @@ md
 ![CU01 Iniciar sesión](Inicio_sesion.png)
 
 ### Ciclo II
-![CU10 Reprogramar cita médica](capturas/cu10.png)
+![CU10 Reprogramar cita médica](Reprogramar.png)
 
 ### Ciclo III
 ![CU16 Generar reportes administrativos](capturas/cu16.png)
