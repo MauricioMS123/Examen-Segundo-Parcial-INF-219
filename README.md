@@ -67,7 +67,8 @@ Agrega aquí tus capturas, una por caso de uso, en la carpeta capturas/.
 
 md
 ### Ciclo I
-![CU01 Iniciar sesión](capturas/cu01.png)
+![CU01 Iniciar sesión](<img width="696" height="587" alt="Inicio_sesion" src="https://github.com/user-attachments/assets/699f7df7-b1e8-4ff6-b739-7b80a1ad6305" />
+)
 
 ### Ciclo II
 ![CU10 Reprogramar cita médica](capturas/cu10.png)
