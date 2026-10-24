@@ -64,7 +64,6 @@ const ov = (c, x) =>
 ```
 Capturas de pantalla
 
-md
 ### Ciclo I
 ![CU01 Iniciar sesión](Inicio_sesion.png)
 
