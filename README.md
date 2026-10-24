@@ -31,7 +31,6 @@ Fragmentos de código
 
 Control de acceso por rol (RN12). Cada rol tiene su lista de vistas autorizadas; el menú lateral la usa para bloquear el resto.
 
-js
 const ACC = {
   Administrador: ['CU01','CU02','CU03','CU04','CU05','CU07','CU15','CU16'],
   Recepcionista: ['CU01','CU02','CU06','CU08','CU09','CU10','CU11','CU12','CU13','CU15','CU17'],
