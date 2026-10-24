@@ -54,8 +54,6 @@ ct('0001', 1, 1, 'Medicina General', TODAY, '08:00', 'Programada', 'Control gene
 ### CU01 · Iniciar sesión
 **Actor:** todos los usuarios con cuenta. Pantalla de acceso con correo o identificador y contraseña, y tres botones de prueba rápida para ver las alertas FA01 (campos vacíos), FA02 (credenciales incorrectas) y FA03 (cuenta inactiva).
 
-![CU01 Iniciar sesión](capturas/cu01.png)
-
 ```js
 const FAM = {
   FA01: ['amber', 'Debe ingresar el identificador de acceso y la contraseña.'],
@@ -76,8 +74,6 @@ const login = () => {
 ### CU02 · Cerrar sesión
 **Actor:** todos los usuarios con cuenta. Menú desplegable en la esquina superior derecha con los datos del perfil y el rol activo. El botón «Cerrar sesión» pide confirmación y redirige a CU01.
 
-![CU02 Cerrar sesión](capturas/cu02.png)
-
 ```js
 const um = () => { S.um = !S.um; $('#um').classList.toggle('hidden', !S.um); };
 
@@ -89,8 +85,6 @@ cm(); toast('Sesión cerrada correctamente'); go('CU01');
 
 ### CU03 · Gestionar usuarios y roles
 **Actor:** Administrador. Tabla de usuarios con rol y estado, buscador, modal «Registrar usuario» (identificador, contraseña, rol y estado) y acciones para Modificar y Desactivar la cuenta.
-
-![CU03 Gestionar usuarios y roles](capturas/cu03.png)
 
 CU03, CU04, CU05 y CU06 comparten el mismo motor de formularios. Cada caso de uso solo define su configuración en el objeto `CF`:
 
@@ -137,8 +131,6 @@ const dis = (k, i) => {
 ### CU04 · Gestionar médicos
 **Actor:** Administrador. Buscador por nombre o especialidad, tabla de médicos y formulario con código autogenerado, número de registro profesional único, nombres, apellidos, teléfono, correo, una o varias especialidades activas (casillas) y estado.
 
-![CU04 Gestionar médicos](capturas/cu04.png)
-
 ```js
 m: { a: M, K: 'MED', t: 'Médicos registrados', nw: 'Registrar médico',
   ph: 'Buscar por nombre o especialidad',
@@ -164,8 +156,6 @@ E.filter(e => e.s == 'Activo').map(e => `<label><input type="checkbox" class="ck
 ### CU05 · Gestionar especialidades
 **Actor:** Administrador. Buscador por nombre y listado de especialidades. El nombre es obligatorio y no admite duplicados aunque cambien mayúsculas, espacios o tildes.
 
-![CU05 Gestionar especialidades](capturas/cu05.png)
-
 ```js
 e: { a: E, K: 'ESP', t: 'Especialidades', nw: 'Registrar especialidad', ph: 'Buscar por nombre',
   f: [
@@ -181,8 +171,6 @@ const nz = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(
 
 ### CU06 · Gestionar pacientes
 **Actor:** Recepcionista. Buscador por CI, nombre o apellido, tabla de pacientes y formulario con código autogenerado, CI único, nombres, apellidos, fecha de nacimiento, sexo, teléfono, correo y dirección (opcionales) y estado.
-
-![CU06 Gestionar pacientes](capturas/cu06.png)
 
 ```js
 p: { a: P, K: 'PAC', t: 'Pacientes registrados', nw: 'Registrar paciente',
@@ -205,8 +193,6 @@ p: { a: P, K: 'PAC', t: 'Pacientes registrados', nw: 'Registrar paciente',
 ### CU07 · Gestionar horarios médicos
 **Actor:** Administrador. Selector de médico activo con dos pestañas: *Configuración del horario médico* (día de lunes a sábado, hora de inicio, hora de finalización y duración de cita, 30 minutos por defecto) y *Registrar indisponibilidad* (rango de fecha y hora, y motivo: Ausencia, Permiso o Vacaciones), con un aviso automático si hay citas afectadas.
 
-![CU07 Gestionar horarios médicos](capturas/cu07.png)
-
 ```js
 const gh = () => {                                           // guardar horario
   let h = { m: S.m7 || 'MED-001', d: $('#hd7').value, i: $('#hi').value, f: $('#hf').value,
@@ -228,8 +214,6 @@ const av7 = () => {                                          // aviso de citas a
 
 ### CU08 · Consultar disponibilidad médica
 **Actor:** Recepcionista. Filtros por especialidad, médico activo y fecha. La grilla muestra cada bloque como Disponible, Ocupado por cita o Bloqueado por indisponibilidad médica.
-
-![CU08 Consultar disponibilidad médica](capturas/cu08.png)
 
 ```js
 // Bloques de la fecha según el horario del médico
@@ -260,8 +244,6 @@ const g = slots(f.m, f.d).map(t => {
 ### CU09 · Programar cita médica
 **Actor:** Recepcionista. Formulario paso a paso: código de cita y fecha de creación automáticos, paciente activo, especialidad, médico habilitado, fecha, bloque horario libre (la hora de fin se calcula sola), motivo opcional y estado inicial Programada.
 
-![CU09 Programar cita médica](capturas/cu09.png)
-
 ```js
 // Solo se ofrecen los bloques libres del médico en la fecha elegida
 let fr = n.m && n.d
@@ -286,8 +268,6 @@ const gc = () => {                                           // guardar cita
 ### CU10 · Reprogramar cita médica
 **Actor:** Recepcionista. Buscador de citas vigentes y un panel comparativo con los *Datos anteriores* frente a la *Nueva programación* (nueva fecha, nueva hora u otro médico de la misma especialidad).
 
-![CU10 Reprogramar cita médica](capturas/cu10.png)
-
 ```js
 // Solo citas Programadas o Confirmadas
 const vg = c => c.e == 'Programada' || c.e == 'Confirmada';
@@ -310,8 +290,6 @@ const gr = () => {                                           // guardar cambios
 ### CU11 · Cancelar cita médica
 **Actor:** Recepcionista. Buscador de citas Programadas o Confirmadas, resumen de la cita y motivo de cancelación obligatorio. Al confirmar, el estado cambia a Cancelada y el horario queda libre.
 
-![CU11 Cancelar cita médica](capturas/cu11.png)
-
 ```js
 const cn = () => {
   let s = C.find(c => c.c == S.s11), mt = $('#mc').value.trim();
@@ -323,8 +301,6 @@ const cn = () => {
 
 ### CU12 · Consultar agenda médica
 **Actores:** Recepcionista y Médico. La Recepcionista filtra por médico y fecha. Si el rol activo es Médico, el filtro queda bloqueado a su propia identificación (RN18). La tabla se ordena por horario.
-
-![CU12 Consultar agenda médica](capturas/cu12.png)
 
 ```js
 const md = S.r == 'Médico',
@@ -338,8 +314,6 @@ C.filter(c => (!f.m || c.m == f.m) && (!f.d || c.f == f.d)).sort(srt).map(ag)
 
 ### CU13 · Registrar asistencia e inasistencia
 **Actor:** Recepcionista. Lista de las citas del día con dos acciones distintas (RN15 y RN16). *Registrar asistencia* marca la presencia con la hora y no cambia el estado. *Registrar inasistencia* cambia el estado a Inasistencia solo si el horario ya terminó.
-
-![CU13 Registrar asistencia e inasistencia](capturas/cu13.png)
 
 ```js
 const NOW = '10:15';                                         // hora simulada para la demostración
@@ -360,8 +334,6 @@ const ia = c => {                                            // inasistencia
 ### CU14 · Registrar cita como atendida
 **Actor:** Médico. Agenda del médico autenticado; las citas vigentes del día tienen el botón «Registrar como atendida», que pide confirmación antes de cambiar el estado a Atendida (RN16 y RN17).
 
-![CU14 Registrar cita como atendida](capturas/cu14.png)
-
 ```js
 // Agenda de hoy del médico autenticado
 C.filter(c => c.m == 'MED-001' && c.f == TODAY).sort(srt)
@@ -374,8 +346,6 @@ const at = c => mod('Confirmar atención',
 
 ### CU17 · Consultar citas afectadas por indisponibilidad médica
 **Actor:** Recepcionista. Tabla de alerta con las citas vigentes que se superponen con una ausencia, permiso o vacación del médico, con la indisponibilidad relacionada y botones directos a CU10 y CU11.
-
-![CU17 Consultar citas afectadas](capturas/cu17.png)
 
 ```js
 // Una cita queda afectada si se solapa con el rango de la indisponibilidad del mismo médico
@@ -402,8 +372,6 @@ const pick = (k, c) => {
 
 ### CU15 · Consultar historial de citas
 **Actores:** Administrador y Recepcionista. Filtros por código o paciente, médico, estado y fecha, con una tabla histórica y un detalle de cada cita: datos generales, fecha de creación, antecedentes de reprogramación (anterior frente a nuevo) e información de cancelación.
-
-![CU15 Consultar historial de citas](capturas/cu15.png)
 
 ```js
 const l15 = () => {
@@ -439,8 +407,6 @@ const dt15 = c => {                                          // modal de detalle
 | REP06 | Resumen de atenciones por período | Rango de fechas |
 | REP07 | Agenda diaria por médico | Médico y fecha |
 
-![CU16 Generar reportes administrativos](capturas/cu16.png)
-
 ```js
 // Cada reporte declara qué filtros necesita: f = fecha, r = rango, m = médico, e = especialidad, s = estado
 const RP = {
@@ -467,17 +433,5 @@ let cs = C.filter(c => ({
 // REP06: totales y porcentajes de atendidas, canceladas e inasistencias
 const ce = e => cs.filter(c => c.e == e).length,
       pc = e => n ? Math.round(ce(e) * 100 / n) : 0;
-```
 
----
 
-## Cómo ejecutarlo
-
-1. Descarga o clona el repositorio.
-2. Abre `index.html` en el navegador.
-3. Cambia el rol desde la barra superior y recorre los casos de uso desde el menú lateral.
-4. Para tus capturas, guarda las imágenes en la carpeta `capturas/` con los nombres `cu01.png` a `cu17.png`.
-
-## Autor
-
-Proyecto académico de Ingeniería de Sistemas. Reemplaza este texto con tu nombre y el de tu universidad.
