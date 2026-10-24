@@ -61,8 +61,9 @@ Citas afectadas por indisponibilidad (CU07 y CU17). Una cita vigente queda afect
 ```js
 const ov = (c, x) =>
   c.m == x.m && c.f + ' ' + c.i < x.f && c.f + ' ' + add(c.i, 30) > x.i;
-Capturas de pantalla
 ```
+Capturas de pantalla
+
 md
 ### Ciclo I
 ![CU01 Iniciar sesión](Inicio_sesion.png)
