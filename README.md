@@ -77,7 +77,3 @@ Cómo ejecutarlo
 Descarga o clona el repositorio.
 Abre index.html en el navegador.
 Cambia el rol desde la barra superior y recorre los casos de uso desde el menú lateral.
-```js
-const ov = (c, x) =>
-  c.m == x.m && c.f + ' ' + c.i < x.f && c.f + ' ' + add(c.i, 30) > x.i;
-```
